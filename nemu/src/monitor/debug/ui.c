@@ -39,11 +39,11 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
-//  char *arg = strtok(NULL, " ");
-//  if(arg!=NULL)
-//  {
-//  printf("%s\n",arg);
-//  }
+  char *arg = strtok(NULL, " ");
+  if(arg!=NULL)
+  {
+  printf("%s\n",arg);
+  }
   cpu_exec(1);
   return 0;
 }
