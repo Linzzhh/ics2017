@@ -40,11 +40,14 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
   char *arg = strtok(NULL, " ");
-  if(arg!=NULL)
-  {
-  printf("%s\n",arg);
+  if(arg!=NULL) {
+  //printf("%s\n",arg);
+  int num=atoi(arg);
+  cpu_exec(num);
   }
+  else{
   cpu_exec(1);
+  }
   return 0;
 }
 
