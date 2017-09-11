@@ -75,7 +75,7 @@ static int cmd_x(char *args)
   sscanf(args,"%d 0x%x",&length,&address);
   for(int i=0;i<length;++i) {
     printf("\n0x%08x: ",address+i*16);
-    printf("0x%08x",vaddr_read((address+i*16),4));
+    printf("0x%08x",vaddr_read((address+i*1),4));
     // printf("0x%02x ",*(unsigned char *)hwa_to_va(address+i));
   }
   printf("\n"); 
