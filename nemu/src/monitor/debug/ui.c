@@ -42,21 +42,29 @@ static int cmd_help(char *args);
 static int cmd_si(char *args) {
   char *arg = strtok(NULL, " ");
   if(arg!=NULL) {
-  //printf("%s\n",arg);
-  int num=atoi(arg);
-  cpu_exec(num);
+    //printf("%s\n",arg);
+    int num=atoi(arg);
+    cpu_exec(num);
   }
   else{
-  cpu_exec(1);
+    cpu_exec(1);
   }
   return 0;
+}
+//Print Registers
+static void print_reg()
+{
+  for(int i=R_EAX;i<=R_EDI;i++){
+    printf("%s: 0x%x\n",regsl[i],cpu.gpr[i]._32);
+  }
+  printf("eip: 0x%x\n",cpu.eip);
 }
 //Print Informations
 static int cmd_info(char *args)
 {
   char *arg = strtok(NULL, " ");
   if (strcmp(arg, "r") == 0) {
-  printf("hahaha");
+    print_reg();
   }
   return 0;
 }
