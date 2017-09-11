@@ -38,7 +38,8 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
-static int cmd_s(char *args) {
+static int cmd_si(char *args) {
+  printf("haha");
   cpu_exec(1);
   return 0;
 }
@@ -51,7 +52,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   /* TODO: Add more commands */
-  { "s", "Single Step", cmd_s},
+  { "si", "Single Step", cmd_si},
 
 };
 
