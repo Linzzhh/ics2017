@@ -73,7 +73,7 @@ static int cmd_x(char *args)
 {
   int length,address;
   sscanf(args,"%d 0x%x",&length,&address);
-  for(int i=0;i<length;i++) {
+  for(int i=0;i<length;++i) {
     if(!(i&0xf)) printf("\n0x%08x: ",address+i*16);
    // printf("0x%02x ",*(unsigned char *)hwa_to_va(address+i));
   }
