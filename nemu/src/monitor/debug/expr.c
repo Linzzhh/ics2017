@@ -118,24 +118,7 @@ static bool make_token(char *e) {
 //  }
   return true;
 }
-/*
-static bool check_parentheses(int p, int q)
-{
-	if(tokens[p].type=='('&&tokens[q-1].type==')'){
-		int cnt=0;
-		for(int i=p;i<q;i++){
-		if(tokens[i].type=='(') cnt++;
-		else if(tokens[i].type==')') cnt--;
-		if(cnt<=0&&i<q-1) return false;
-	}
-	if(cnt>0) return false;
-	}
-	else{
-//	printf("not surrounded!");
-	return false;
-	}
-	return true;
-}*/
+
 static int get_level(int op)
 {
 	if(op=='+'||op=='-') return 1;
@@ -166,6 +149,23 @@ static int get_dominant_optype(int p,int q){//get the index...
 	}
 	return index;
 }/*
+static bool check_parentheses(int p, int q)
+{
+	if(tokens[p].type=='('&&tokens[q-1].type==')'){
+		int cnt=0;
+		for(int i=p;i<q;i++){
+		if(tokens[i].type=='(') cnt++;
+		else if(tokens[i].type==')') cnt--;
+		if(cnt<=0&&i<q-1) return false;
+	}
+	if(cnt>0) return false;
+	}
+	else{
+//	printf("not surrounded!");
+	return false;
+	}
+	return true;
+}
 static uint32_t eval(int p,int q)
 {
 	if(p>q){
@@ -201,6 +201,6 @@ uint32_t expr(char *e, bool *success) {
  // if( check_parentheses(0,nr_token)) printf("success!!");
  // else printf("error!!!!!!!");
  int index =  get_dominant_optype(0,nr_token);
- printf("%c",tokens[index].type);
+ printf("%c %d",tokens[index].type,index);
   return 0;
 }
