@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ,NUM
@@ -148,7 +149,7 @@ static int get_dominant_optype(int p,int q){//get the index...
 		else continue; //not operation..
 	}
 	return index;
-}/*
+}
 static bool check_parentheses(int p, int q)
 {
 	if(tokens[p].type=='('&&tokens[q-1].type==')'){
@@ -172,6 +173,7 @@ static uint32_t eval(int p,int q)
 	  printf("bad expression!!"); return -1;
 	}
 	else if(p==q){
+		return atoi(tokens[p].str);
 	  // return the value of number
 	}
 	else if(check_parentheses(p,q)==true){
@@ -179,8 +181,8 @@ static uint32_t eval(int p,int q)
 	  return eval(p+1,q-1);
 	}else{
 	  int optype=get_dominant_optype(p,q);
-	  int val1=eval(p,op-1);
-	  int val2=eval(op+1,q);
+	  int val1=eval(p,optype-1);
+	  int val2=eval(optype+1,q);
 	  switch(optype){
 		case '+':return val1+val2;
 		case '-':return val1-val2;
@@ -188,8 +190,8 @@ static uint32_t eval(int p,int q)
 		case '/':return val1/val2;
 		default :assert(0);
 	}
-
-}*/
+	}
+}
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -200,7 +202,9 @@ uint32_t expr(char *e, bool *success) {
   //TODO();
  // if( check_parentheses(0,nr_token)) printf("success!!");
  // else printf("error!!!!!!!");
- int index =  get_dominant_optype(0,nr_token);
- printf("%c %d",tokens[index].type,index);
+ //int index =  get_dominant_optype(0,nr_token);
+ //printf("%c %d",tokens[index].type,index);
+  int value=eval(0,nr_token);
+  printf("%d",value);
   return 0;
 }
