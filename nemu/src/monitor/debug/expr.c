@@ -173,7 +173,7 @@ static uint32_t eval(int p,int q)
 	  printf("bad expression!!"); return -1;
 	}
 	else if(p==q){
-		printf("%s",tokens[p].str);
+		printf("%s\n",tokens[p].str);
 		return atoi(tokens[p].str);
 	  // return the value of number
 	}
@@ -185,7 +185,7 @@ static uint32_t eval(int p,int q)
 	  int val1=eval(p,op-1);
 	  int val2=eval(op+1,q);
 	  char optype=tokens[op].type;
-	  printf("the operation is %c , index is %d",optype, op);
+	  printf("the operation is %c , index is %d\n",optype, op);
 	  switch(optype){
 		case '+':return val1+val2;
 		case '-':return val1-val2;
