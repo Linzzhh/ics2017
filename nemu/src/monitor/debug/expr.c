@@ -111,15 +111,45 @@ static bool make_token(char *e) {
       return false;
     }
   }
-  for(int i=0;i<nr_token;i++)
-  {
-  printf("%d    ",tokens[i].type);
-  if(tokens[i].type>255) printf("%s  ",tokens[i].str);
- 
-  }
+//  for(int i=0;i<nr_token;i++)
+//  {
+//  printf("%d    ",tokens[i].type);
+//  if(tokens[i].type>255) printf("%s  ",tokens[i].str); 
+//  }
   return true;
 }
+static bool check_parentheses(int p, int q)
+{
+	if(tokens[p].type=='('&&tokens[q-1].type==')'){
+		int cnt=0;
+		for(int i=p;i<q;i++){
+		if(tokens[i].type=='(') cnt++;
+		else if(tokens[i].type==')') cnt--;
+		if(cnt<=0) return false;
+	}
+	if(cnt>0) return false;
+	}
+	else{
+//	printf("not surrounded!");
+	return false;
+	}
+	return true;
+}/*
+static uint32_t eval(int p,int q)
+{
+	if(p>q){
+	  printf("bad expression!!"); return -1;
+	}
+	else if(p==q){
+	  // return the value of number
+	}
+	else if(check_parentheses(p,q)==true){
+	//the expression is surrouded by a match
+	  return eval(p+1,q-1);
+	}else{
+	}
 
+}*/	
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -127,7 +157,8 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
+  //TODO();
+  if( check_parentheses(0,nr_token)) printf("success!!");
+  else printf("error!!!!!!!");
   return 0;
 }
