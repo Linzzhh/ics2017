@@ -138,7 +138,7 @@ static int get_dominant_optype(int p,int q){//get the index...
 	int inbracket=0;
 	int op=10000; 
 	int index=p;
-	for(int i=p;i<q;i++){
+	for(int i=p;i<=q;i++){
 		int tp=tokens[i].type;
 		if(tp<TK_NOTYPE){
 		if(tp=='(') {inbracket++;continue;}
@@ -152,12 +152,12 @@ static int get_dominant_optype(int p,int q){//get the index...
 }
 static bool check_parentheses(int p, int q)
 {
-	if(tokens[p].type=='('&&tokens[q-1].type==')'){
+	if(tokens[p].type=='('&&tokens[q].type==')'){
 		int cnt=0;
-		for(int i=p;i<q;i++){
+		for(int i=p;i<=q;i++){
 		if(tokens[i].type=='(') cnt++;
 		else if(tokens[i].type==')') cnt--;
-		if(cnt<=0&&i<q-1) return false;
+		if(cnt<=0&&i<q) return false;
 	}
 	if(cnt>0) return false;
 	}
@@ -172,7 +172,7 @@ static uint32_t eval(int p,int q)
 	if(p>q){
 	  printf("bad expression!!"); return -1;
 	}
-	else if(p==q||q==p+1){
+	else if(p==q){
 		printf("%s\n",tokens[p].str);
 		return atoi(tokens[p].str);
 	  // return the value of number
@@ -208,7 +208,7 @@ uint32_t expr(char *e, bool *success) {
  // else printf("error!!!!!!!");
  //int index =  get_dominant_optype(0,nr_token);
  //printf("%c %d",tokens[index].type,index);
-  int value=eval(0,nr_token);
+  int value=eval(0,nr_token-1);
   printf("%d",value);
   return 0;
 }
