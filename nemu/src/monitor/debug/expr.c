@@ -27,7 +27,7 @@ static struct rule {
   {"\\-", '-'},               // minus
   {"\\*", '*'},               // mul
   {"\\/", '/'},               // div
-  {"^[0-9]+$", NUM},          // decimal
+  {"[0-9]+", NUM},          // decimal
   {"\\(", '('},               // lbracket
   {"\\)", ')'},               // rbracket
   {"==", TK_EQ},              // equal
