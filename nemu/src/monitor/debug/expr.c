@@ -118,6 +118,7 @@ static bool make_token(char *e) {
 //  }
   return true;
 }
+/*
 static bool check_parentheses(int p, int q)
 {
 	if(tokens[p].type=='('&&tokens[q-1].type==')'){
@@ -134,6 +135,36 @@ static bool check_parentheses(int p, int q)
 	return false;
 	}
 	return true;
+}*/
+static int get_level(int op)
+{
+	if(op=='+'||op=='-') return 1;
+	if(op=='*'||op=='/') return 2;
+	return 10000;
+}
+static int cmp_op(int op1,int op2)
+{
+
+   if(get_level(op1)==get_level(op2)) return 0;
+   if(get_level(op1)<get_level(op2))  return -1;
+   if(get_level(op1)>get_level(op2))  return 1;
+   return -2;
+}
+static int get_dominant_optype(int p,int q){//get the index...
+	int inbracket=0;
+	int op=10000; 
+	int index=p;
+	for(int i=p;i<q;i++){
+		int tp=tokens[i].type;
+		if(tp<TK_NOTYPE){
+		if(tp=='(') {inbracket++;continue;}
+		if(tp==')') {inbracket--;continue;}
+		if(inbracket>0) continue; // in the bracket..
+                if(cmp_op(op,tp)>=0) {op=tp;index=i;}
+		}
+		else continue; //not operation..
+	}
+	return index;
 }/*
 static uint32_t eval(int p,int q)
 {
@@ -147,9 +178,18 @@ static uint32_t eval(int p,int q)
 	//the expression is surrouded by a match
 	  return eval(p+1,q-1);
 	}else{
+	  int optype=get_dominant_optype(p,q);
+	  int val1=eval(p,op-1);
+	  int val2=eval(op+1,q);
+	  switch(optype){
+		case '+':return val1+val2;
+		case '-':return val1-val2;
+		case '*':return val1*val2;
+		case '/':return val1/val2;
+		default :assert(0);
 	}
 
-}*/	
+}*/
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -158,7 +198,9 @@ uint32_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
-  if( check_parentheses(0,nr_token)) printf("success!!");
-  else printf("error!!!!!!!");
+ // if( check_parentheses(0,nr_token)) printf("success!!");
+ // else printf("error!!!!!!!");
+ int index =  get_dominant_optype(0,nr_token);
+ printf("%c",tokens[index].type);
   return 0;
 }
