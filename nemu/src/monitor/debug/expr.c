@@ -172,7 +172,7 @@ static uint32_t eval(int p,int q)
 	if(p>q){
 	  printf("bad expression!!"); return -1;
 	}
-	else if(p==q){
+	else if(p==q||q==p+1){
 		printf("%s\n",tokens[p].str);
 		return atoi(tokens[p].str);
 	  // return the value of number
