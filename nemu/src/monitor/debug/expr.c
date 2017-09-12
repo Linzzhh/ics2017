@@ -126,11 +126,3 @@ uint32_t expr(char *e, bool *success) {
 
   return 0;
 }
-//int main(void)
-//{
-//	char * expr;
-//	printf("enter the expr...");
-//	gets(expr);
-//        make_token(expr);
-//	return 0;
-//}

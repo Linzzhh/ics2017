@@ -8,7 +8,7 @@
 #include <readline/history.h>
 
 void cpu_exec(uint64_t);
-void make_token(char *e);
+//void make_token(char *e);
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
   static char *line_read = NULL;
@@ -71,19 +71,21 @@ static int cmd_info(char *args)
 //Scan the memory
 static int cmd_x(char *args)
 {
-  int length,address;
-  sscanf(args,"%d 0x%x",&length,&address);
-  for(int i=0;i<length;++i) {
-    printf("\n0x%08x: ",address+i*4);
-    printf("0x%08x",vaddr_read((address+i*4),4));
-  }
-  printf("\n"); 
-  return 0; 
+	int length,address;
+	sscanf(args,"%d 0x%x",&length,&address);
+	for(int i=0;i<length;++i) {
+		printf("\n0x%08x: ",address+i*4);
+		printf("0x%08x",vaddr_read((address+i*4),4));
+	}
+	printf("\n"); 
+	return 0; 
 }
 static int cmd_p(char *args)
 {
 	printf("%s",args);
-	make_token(args);
+	bool flag=true;
+	bool *s=&flag;
+	expr(args,s);
 	return 0;
 }
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
