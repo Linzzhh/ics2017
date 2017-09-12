@@ -80,6 +80,11 @@ static int cmd_x(char *args)
   printf("\n"); 
   return 0; 
 }
+static int cmd_p(char *args)
+{
+	printf("%s",args);
+	return 0;
+}
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
 
@@ -95,6 +100,7 @@ static struct {
   { "si", "Single Step", cmd_si},
   { "info", "Print Infomations", cmd_info},
   { "x", "Scan the memory", cmd_x},
+  { "p", "get the value of expr", cmd_p},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
