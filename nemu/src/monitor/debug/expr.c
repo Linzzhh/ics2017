@@ -182,10 +182,10 @@ static uint32_t eval(int p,int q)
 	  return eval(p+1,q-1);
 	}else{
 	  int op=get_dominant_optype(p,q);
+	  printf("index is %d",op);
 	  int val1=eval(p,op-1);
 	  int val2=eval(op+1,q);
 	  char optype=tokens[op].type;
-	  printf("the operation is %c , index is %d\n",optype, op);
 	  switch(optype){
 		case '+':return val1+val2;
 		case '-':return val1-val2;
