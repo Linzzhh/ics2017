@@ -179,7 +179,8 @@ static uint32_t eval(int p,int q)
 	}
 	else if(check_parentheses(p,q)==true){
 	//the expression is surrouded by a match
-	  return eval(p+1,q-1);
+ 		printf("match!!!!");
+      		return eval(p+1,q-1);
 	}else{
 	  int op=get_dominant_optype(p,q);
 	  printf("index is %d",op);
