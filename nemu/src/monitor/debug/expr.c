@@ -173,6 +173,7 @@ static uint32_t eval(int p,int q)
 	  printf("bad expression!!"); return -1;
 	}
 	else if(p==q){
+	//	printf("%s",tokens[p].str);
 		return atoi(tokens[p].str);
 	  // return the value of number
 	}
@@ -180,9 +181,10 @@ static uint32_t eval(int p,int q)
 	//the expression is surrouded by a match
 	  return eval(p+1,q-1);
 	}else{
-	  int optype=get_dominant_optype(p,q);
-	  int val1=eval(p,optype-1);
-	  int val2=eval(optype+1,q);
+	  int op=get_dominant_optype(p,q);
+	  int val1=eval(p,op-1);
+	  int val2=eval(op+1,q);
+	  char optype=tokens[op].type;
 	  switch(optype){
 		case '+':return val1+val2;
 		case '-':return val1-val2;
