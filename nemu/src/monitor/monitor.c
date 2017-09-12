@@ -122,8 +122,8 @@ int init_monitor(int argc, char *argv[]) {
 #endif
 
   /* Load the image to memory. */
-  load_img();
-
+ // load_img();
+  load_default_img();
   /* Initialize this virtual computer system. */
   restart();
 
