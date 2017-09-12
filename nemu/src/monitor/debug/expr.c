@@ -11,7 +11,6 @@ enum {
 
   /* TODO: Add more token types */
 
- // ,'+',-,*,/,(,)
 };
 
 static struct rule {
@@ -23,15 +22,15 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},     // spaces
-  {"\\+", '+'},          // plus
-  {"\\-", '-'},          // minus
-  {"\\*", '*'},          // mul
-  {"\\/", '/'},          // div
+  {" +", TK_NOTYPE},          // spaces
+  {"\\+", '+'},               // plus
+  {"\\-", '-'},               // minus
+  {"\\*", '*'},               // mul
+  {"\\/", '/'},               // div
   {"^[0-9]+$", TK_DEC},       // decimal
-  {"\\(", '('},          // lbracket
-  {"\\)", ')'},          // rbracket
-  {"==", TK_EQ},         // equal
+  {"\\(", '('},               // lbracket
+  {"\\)", ')'},               // rbracket
+  {"==", TK_EQ},              // equal
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -85,7 +84,7 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+        printf("%s  %d",rules[i].regex,rules[i].token_type);
         switch (rules[i].token_type) {
           default: TODO();
         }
