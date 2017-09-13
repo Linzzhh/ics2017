@@ -217,7 +217,6 @@ static uint32_t eval(int p,int q)
 	  int op=get_dominant_optype(p,q);
 	  int optype=tokens[op].type;
 	  int val1,val2;
-	  printf("%d   %c",optype, optype);
 	  if(optype!='!'&&optype!=DEREF)
 	    val1=eval(p,op-1);
 	  val2=eval(op+1,q);
@@ -255,6 +254,5 @@ uint32_t expr(char *e, bool *success) {
   }
 
   uint32_t value=eval(0,nr_token-1);
-  printf("%d  0x%08x \n",value,value);
-  return 0;
+  return value;
 }
