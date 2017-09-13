@@ -226,7 +226,7 @@ static uint32_t eval(int p,int q)
 		case TK_NEQ:return val1!=val2;
 		case LOGIC_AND:return val1&&val2;
 		case LOGIC_OR:return val1||val2;
-		case TK_EQ:return val1==val2;
+		case TK_EQ: printf("%d    %d",val1,val2); return val1==val2;
 		case DEREF: vaddr_read(val2,4);
 		case '!':return !val2;
 		default :assert(0);
