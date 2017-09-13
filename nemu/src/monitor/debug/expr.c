@@ -115,13 +115,13 @@ static bool make_token(char *e) {
 		  for(int j=0;j<substr_len;j++)
 			tokens[nr_token].str[j]=substr_start[j];
 	          nr_token++;
-		break;
+		  break;
 		case REG:
 		  tokens[nr_token].type=rules[i].token_type;
 		  for(int j=1;j<substr_len;j++)
 			tokens[nr_token].str[j-1]=substr_start[j];
-		  printf("%d   %s\n",tokens[nr_token].type,tokens[nr_token].str);
                   nr_token++;
+		  break;
 		default: TODO();
         }
 
@@ -201,7 +201,6 @@ static uint32_t eval(int p,int q)
 		else if(tokens[p].type==HEX) //the value is the hex
 		  return strtol(tokens[p].str,NULL,16);
 		else if(tokens[p].type==REG){// the value is register
-			printf("%s \n",tokens[p].str);
 		for(int i=R_EAX;i<=R_EDI;i++)
 			if(strcmp(regsl[i],tokens[p].str)==0){
 			return cpu.gpr[i]._32;
