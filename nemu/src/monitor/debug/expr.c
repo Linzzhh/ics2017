@@ -29,11 +29,11 @@ static struct rule {
   {"\\-", '-'},               // minus
   {"\\*", '*'},               // mul
   {"\\/", '/'},               // div
+  {"^0x[0-9a-fA-F]+", HEX},   // hex
   {"[0-9]+", NUM},            // decimal
   {"\\(", '('},               // lbracket
   {"\\)", ')'},               // rbracket
   {"==", TK_EQ},              // equal
-  {"^0x[0-9a-fA-F]+", HEX},   // hex
   {"^\\$[a-zA-Z]+", REG},     // reg_name
   {"!=", TK_NEQ},             // not equal
   {"&&", LOGIC_AND},          // logic and
