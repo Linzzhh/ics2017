@@ -200,10 +200,12 @@ static uint32_t eval(int p,int q)
 		else if(tokens[p].type==HEX) //the value is the hex
 		  return strtol(tokens[p].str,NULL,16);
 		else if(tokens[p].type==REG){// the value is register
+			printf("%s \n",tokens[p].str);
 		for(int i=R_EAX;i<=R_EDI;i++)
 			if(strcmp(regsl[i],tokens[p].str)==0){
 			return cpu.gpr[i]._32;
 			}
+			
 		}
 		  return -1;
 	  // return the value of number
@@ -226,7 +228,7 @@ static uint32_t eval(int p,int q)
 		case TK_NEQ:return val1!=val2;
 		case LOGIC_AND:return val1&&val2;
 		case LOGIC_OR:return val1||val2;
-		case TK_EQ: printf("%d    %d",val1,val2); return val1==val2;
+		case TK_EQ:  return val1==val2;
 		case DEREF: vaddr_read(val2,4);
 		case '!':return !val2;
 		default :assert(0);
