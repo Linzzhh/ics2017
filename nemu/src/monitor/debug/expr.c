@@ -229,7 +229,7 @@ static uint32_t eval(int p,int q)
 		case LOGIC_AND:return val1&&val2;
 		case LOGIC_OR:return val1||val2;
 		case TK_EQ:  return val1==val2;
-		case DEREF: vaddr_read(val2,4);
+		case DEREF: printf("0x%08x     \n",val2);vaddr_read(val2,4);
 		case '!':return !val2;
 		default :assert(0);
 	}
