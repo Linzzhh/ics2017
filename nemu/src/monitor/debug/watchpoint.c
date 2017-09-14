@@ -59,12 +59,15 @@ void free_wp(WP *wp)
 {
   if(head->NO==wp->NO) head=head->next; 
   else{
-  for(WP *h=head;h->next!=NULL;h=h->next){
-    if(h->next->NO==wp->NO){
-      h->next = h->next->next;
+    WP *h=head;
+    for(;h->next!=NULL;h=h->next){
+      if(h->next->NO==wp->NO){
+        h->next = h->next->next;
+      }
     }
-  }
-  }
+  
+    if(h->next==NULL&&wp->NO==3) printf("hhhhhhhh\n");
+    }
   if(free_->NO>wp->NO) { wp->next=free_; free_=wp;}
   else{
     WP *f=free_;
