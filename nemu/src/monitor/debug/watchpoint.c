@@ -57,6 +57,7 @@ WP* new_wp()
 }
 void free_wp(WP *wp)
 {
+	printf("!!!!!!!!!!!\n");
   if(head->NO==wp->NO) head=head->next; 
   else{
     WP *h=head;
