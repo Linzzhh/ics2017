@@ -115,8 +115,8 @@ int exam_watch()
       flag++;
       printf("the watchpoint num is %d\n",w1->NO);
       printf("the expr is %s\n",w1->exp);
-      printf("before value is: %d\n",w1->value);
-      printf("now    value is: %d\n",nowvalue);
+      printf("before value is: %d     0x%08x\n",w1->value,w1->value);
+      printf("now    value is: %d     0x%08x\n",nowvalue,nowvalue);
     }
   }
   return flag;
