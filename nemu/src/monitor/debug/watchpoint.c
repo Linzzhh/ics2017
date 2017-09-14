@@ -62,7 +62,6 @@ WP* new_wp()
     }
     if(wp->NO<now->NO) { wp->next=now;}
   }
-  print_list();
   return now;
 }
 void free_wp(WP *wp)
@@ -98,7 +97,8 @@ int record_watch(char *e)
   bool *s=&flag;
   uint32_t val =expr(e,s);
   wp->value=val;
-  wp->exp=e;
+ // wp->exp=e;
+  strcpy(wp->exp,e);
   print_watch();
   if(head==NULL) return 0;
   return 1;
