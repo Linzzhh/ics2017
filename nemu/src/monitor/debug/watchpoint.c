@@ -64,6 +64,7 @@ void free_wp(WP *wp)
     for(;h->next!=NULL;h=h->next){
       if(h->next->NO==wp->NO){
         h->next = h->next->next;
+	printf("%d  \n",wp->NO);
       }
     }
   
