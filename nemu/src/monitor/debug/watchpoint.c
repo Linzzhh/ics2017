@@ -20,6 +20,21 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 
+void print_list()
+{
+  printf("current free list:\n");
+  for(WP *w1=free_;w1!=NULL; w1=w1->next){
+    printf("%d    ",w1->NO);
+  }
+  printf("\n");
+
+  printf("current head list:\n");
+  for(WP *w1=head;w1!=NULL; w1=w1->next){
+    printf("%d    ",w1->NO);
+  }
+  printf("\n");
+
+}
 WP* new_wp()
 {
   if(free_==NULL) assert(0);
@@ -37,17 +52,7 @@ WP* new_wp()
     }
     if(wp->NO<now->NO) { wp->next=now;}
   }
-  printf("current free list:\n");
-  for(WP *w1=free_;w1!=NULL; w1=w1->next){
-    printf("%d    ",w1->NO);
-  }
-  printf("\n");
-
-  printf("current head list:\n");
-  for(WP *w1=head;w1!=NULL; w1=w1->next){
-    printf("%d    ",w1->NO);
-  }
-  printf("\n");
+  print_list();
   return now;
 }
 void free_wp(WP *wp)
@@ -72,8 +77,18 @@ void free_wp(WP *wp)
     }
     if(f->NO<wp->NO) {f->next=wp;wp->next=NULL;}
   }
+  print_list();
 }
 void watch(char *expr)
 {
   new_wp();
+  new_wp();
+  new_wp();
+  new_wp();
+  WP *wp1=&wp_pool[1];
+  WP *wp3=&wp_pool[3];
+  WP *wp2=&wp_pool[2];
+  free_wp(wp1);
+  free_wp(wp3);
+  free_wp(wp2);
 }
