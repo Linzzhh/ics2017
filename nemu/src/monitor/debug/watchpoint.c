@@ -48,6 +48,7 @@ WP* new_wp()
       if(wp->NO<now->NO&&now->NO<wp->next->NO){
         now->next = wp->next;
 	wp->next = now;
+	break;
       }
     }
     if(wp->NO<now->NO) { wp->next=now;}
@@ -64,6 +65,7 @@ void free_wp(WP *wp)
     for(;h->next!=NULL;h=h->next){
       if(h->next->NO==wp->NO){
         h->next = h->next->next;
+	break;
       }
     } 
     }
@@ -75,6 +77,7 @@ void free_wp(WP *wp)
 	printf("%d    %d     %d\n",f->NO,wp->NO,f->next->NO);
         wp->next=f->next;
         f->next=wp;
+	break;
       }
     }
     if(f->NO<wp->NO) {f->next=wp;wp->next=NULL;}
