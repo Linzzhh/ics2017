@@ -62,11 +62,11 @@ static void print_reg()
 //Print Informations
 static int cmd_info(char *args)
 {
-  char *arg = strtok(NULL, " ");
-  if (strcmp(arg, "r") == 0) {
-    print_reg();
-  }
-  return 0;
+       	char *arg = strtok(NULL, " ");
+	if (strcmp(arg, "r") == 0) {
+	print_reg();
+ 	}
+	return 0;
 }
 //Scan the memory
 static int cmd_x(char *args)
@@ -88,6 +88,11 @@ static int cmd_p(char *args)
 	printf("%d   \n0x%08x \n",value,value);
 	return 0;
 }
+static int cmd_w(char *args)
+{
+	watch(args);
+	return 0;
+}
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
 
@@ -104,6 +109,7 @@ static struct {
   { "info", "Print Infomations", cmd_info},
   { "x", "Scan the memory", cmd_x},
   { "p", "get the value of expr", cmd_p},
+  { "w", "watchpoint", cmd_w},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))

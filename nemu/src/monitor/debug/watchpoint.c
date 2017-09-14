@@ -37,6 +37,17 @@ WP* new_wp()
     }
     if(wp->NO<now->NO) { wp->next=now;}
   }
+  printf("current free list:\n");
+  for(WP *w1=free_;w1!=NULL; w1=w1->next){
+    printf("%d    ",w1->NO);
+  }
+  printf("\n");
+
+  printf("current head list:\n");
+  for(WP *w1=head;w1!=NULL; w1=w1->next){
+    printf("%d    ",w1->NO);
+  }
+  printf("\n");
   return now;
 }
 void free_wp(WP *wp)
@@ -61,4 +72,8 @@ void free_wp(WP *wp)
     }
     if(f->NO<wp->NO) {f->next=wp;wp->next=NULL;}
   }
+}
+void watch(char *expr)
+{
+ printf("%s ",expr);
 }
