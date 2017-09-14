@@ -35,6 +35,16 @@ void print_list()
   printf("\n");
 
 }
+void print_watch()
+{
+  for(WP *w1=head;w1!=NULL; w1=w1->next){
+
+      printf("the watchpoint num is %d\n",w1->NO);
+      printf("the expr is %s\n",w1->exp);
+      printf("the value is: %d\n",w1->value);
+    }
+
+}
 WP* new_wp()
 {
   if(free_==NULL) assert(0);
@@ -48,7 +58,6 @@ WP* new_wp()
       if(wp->NO<now->NO&&now->NO<wp->next->NO){
         now->next = wp->next;
 	wp->next = now;
-//	break;
       }
     }
     if(wp->NO<now->NO) { wp->next=now;}
@@ -58,7 +67,6 @@ WP* new_wp()
 }
 void free_wp(WP *wp)
 {
-	printf("!!!!!!!!!!!\n");
   if(head->NO==wp->NO) head=head->next; 
   else{
     WP *h=head;
@@ -74,27 +82,48 @@ void free_wp(WP *wp)
     WP *f=free_;
     for(;f->next!=NULL;f=f->next){
       if(f->NO<wp->NO&&wp->NO<f->next->NO){
-	printf("%d    %d    %d\n",f->NO,wp->NO,f->next->NO);
         wp->next=f->next;
         f->next=wp;
 	printf("%d    %d    %d\n",f->NO,wp->NO,f->next->NO);
-//	break;
       }
     }
     if(f->NO<wp->NO) {f->next=wp;wp->next=NULL;}
   }
   print_list();
 }
-void watch(char *expr)
+int record_watch(char *e)
 {
-  new_wp();
-  new_wp();
-  new_wp();
-  new_wp();
-  WP *wp1=&wp_pool[1];
-  WP *wp3=&wp_pool[3];
-  WP *wp2=&wp_pool[2];
-  free_wp(wp1);
-  free_wp(wp3);
-  free_wp(wp2);
+  WP *wp = new_wp();
+  bool flag=true;
+  bool *s=&flag;
+  uint32_t val =expr(e,s);
+  wp->value=val;
+  wp->exp=e;
+  print_watch();
+  if(head==NULL) return 0;
+  return 1;
+}
+int exam_watch()
+{
+  int flag=0;
+  for(WP *w1=head;w1!=NULL; w1=w1->next){
+    bool flag=true;
+    bool *s=&flag;
+
+    uint32_t nowvalue=expr(w1->exp,s);
+    if(nowvalue!=w1->value){
+      flag++;
+      printf("the watchpoint num is %d\n",w1->NO);
+      printf("the expr is %s\n",w1->exp);
+      printf("before value is: %d\n",w1->value);
+      printf("now    value is: %d\n",nowvalue);
+    }
+  }
+  return flag;
+
+}
+void delete_watch(int i)
+{
+  WP *wpi=&wp_pool[i];
+  free_wp(wpi);
 }

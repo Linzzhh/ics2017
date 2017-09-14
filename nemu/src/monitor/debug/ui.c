@@ -37,17 +37,27 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
-
+static int watch_flag;
 //Single Step
 static int cmd_si(char *args) {
   char *arg = strtok(NULL, " ");
+  int num;
   if(arg!=NULL) {
     //printf("%s\n",arg);
-    int num=atoi(arg);
-    cpu_exec(num);
+     num=atoi(arg);
   }
   else{
+    num=1;
+  }
+  for(int i=1;i<=num;i++){
     cpu_exec(1);
+    if(watch_flag){ 
+     int flag= exam_watch();
+     if(flag>0){
+       nemu_state=NEMU_STOP;
+       return 0;
+     }
+    }
   }
   return 0;
 }
@@ -65,6 +75,9 @@ static int cmd_info(char *args)
        	char *arg = strtok(NULL, " ");
 	if (strcmp(arg, "r") == 0) {
 	print_reg();
+ 	}
+	else if(strcmp(arg, "w") == 0) {
+	print_watch();
  	}
 	return 0;
 }
@@ -90,7 +103,16 @@ static int cmd_p(char *args)
 }
 static int cmd_w(char *args)
 {
-	watch(args);
+        watch_flag= record_watch(args);
+	return 0;
+}
+static int cmd_d(char *args)
+{
+
+	if(args!=NULL) {
+        int num=atoi(args);
+	delete_watch(num);
+        }
 	return 0;
 }
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -110,6 +132,7 @@ static struct {
   { "x", "Scan the memory", cmd_x},
   { "p", "get the value of expr", cmd_p},
   { "w", "watchpoint", cmd_w},
+  { "d", "delete the watchpoint", cmd_d},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
