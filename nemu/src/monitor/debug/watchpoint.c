@@ -75,5 +75,5 @@ void free_wp(WP *wp)
 }
 void watch(char *expr)
 {
- printf("%s ",expr);
+  new_wp();
 }
