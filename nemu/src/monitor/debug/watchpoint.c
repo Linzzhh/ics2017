@@ -117,6 +117,7 @@ int exam_watch()
       printf("the expr is %s\n",w1->exp);
       printf("before value is: %d     0x%08x\n",w1->value,w1->value);
       printf("now    value is: %d     0x%08x\n",nowvalue,nowvalue);
+      w1->value=nowvalue;
     }
   }
   return flag;
