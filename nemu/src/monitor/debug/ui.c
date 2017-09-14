@@ -85,7 +85,7 @@ static int cmd_p(char *args)
 	bool flag=true;
 	bool *s=&flag;
 	uint32_t value=expr(args,s);
-	printf("%d\n 0x%08x \n",value,value);
+	printf("%d   \n0x%08x \n",value,value);
 	return 0;
 }
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
