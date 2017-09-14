@@ -65,7 +65,6 @@ void free_wp(WP *wp)
     }
   }
   }
-  if(wp->NO==3) print_list();  
   if(free_->NO>wp->NO) { wp->next=free_; free_=wp;}
   else{
     WP *f=free_;
@@ -86,9 +85,9 @@ void watch(char *expr)
   new_wp();
   new_wp();
   WP *wp1=&wp_pool[1];
-  WP *wp3=&wp_pool[3];
+ // WP *wp3=&wp_pool[3];
   WP *wp2=&wp_pool[2];
   free_wp(wp1);
-  free_wp(wp3);
+ // free_wp(wp3);
   free_wp(wp2);
 }
