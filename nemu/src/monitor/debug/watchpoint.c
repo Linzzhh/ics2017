@@ -107,8 +107,8 @@ int exam_watch()
 {
   int flag=0;
   for(WP *w1=head;w1!=NULL; w1=w1->next){
-    bool flag=true;
-    bool *s=&flag;
+    bool flag1=true;
+    bool *s=&flag1;
 
     uint32_t nowvalue=expr(w1->exp,s);
     if(nowvalue!=w1->value){
