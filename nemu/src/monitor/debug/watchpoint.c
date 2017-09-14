@@ -74,8 +74,10 @@ void free_wp(WP *wp)
     WP *f=free_;
     for(;f->next!=NULL;f=f->next){
       if(f->NO<wp->NO&&wp->NO<f->next->NO){
+	printf("%d    %d    %d\n",f->NO,wp->NO,f->next->NO);
         wp->next=f->next;
         f->next=wp;
+	printf("%d    %d    %d\n",f->NO,wp->NO,f->next->NO);
 //	break;
       }
     }
