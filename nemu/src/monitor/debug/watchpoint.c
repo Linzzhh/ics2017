@@ -88,7 +88,7 @@ void free_wp(WP *wp)
     }
     if(f->NO<wp->NO) {f->next=wp;wp->next=NULL;}
   }
-  print_list();
+  print_watch();
 }
 int record_watch(char *e)
 {
