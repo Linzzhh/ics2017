@@ -27,8 +27,9 @@ make_EHelper(call) {
   // the target address is calculated at the decode stage
   //printf("0x%08x     0x%08x",cpu.eip,decoding.seq_eip);
   //TODO();
-  rtl_push(&decoding.seq_eip);
+ // rtl_push(&decoding.seq_eip);
  // decoding.jmp_eip=decoding.seq_eip+id_dest->val;
+  rtl_push(&cpu.eip);
   decoding.jmp_eip=cpu.eip+id_dest->val;
   decoding.is_jmp = 1 ;
   print_asm("call %x", decoding.jmp_eip);
