@@ -7,7 +7,7 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  TODO();
+  //TODO();
   
   rtlreg_t true_flag=1;
   rtlreg_t false_flag=0;
