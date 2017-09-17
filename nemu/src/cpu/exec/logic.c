@@ -15,6 +15,7 @@ make_EHelper(and) {
 make_EHelper(xor) {
  // TODO();
   rtl_xor(&t2, &id_dest->val, &id_src->val);
+  printf("%d",t2);
   operand_write(id_dest,&t2);
   rtl_update_ZFSF(&t2,id_dest->width); 
   
