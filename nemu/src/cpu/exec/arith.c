@@ -7,8 +7,8 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  //TODO();
-  
+  TODO();
+ /* 
   rtlreg_t true_flag=1;
   rtlreg_t false_flag=0;
   //set  CF  a-b   :b>a cf=1
@@ -25,7 +25,7 @@ make_EHelper(sub) {
 
   rtlreg_t xnor_result=!(dest_result[id_dest->width*8-1]^src_result[id_src->width*8-1]);
   rtlreg_t result=xor_result&xnor_result;
-  rtl_set_OF(&result);
+  rtl_set_OF(&result);*/
   print_asm_template2(sub);
 }
 
