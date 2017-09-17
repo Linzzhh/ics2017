@@ -9,23 +9,26 @@ make_EHelper(add) {
 make_EHelper(sub) {
  // TODO();
  
-  rtlreg_t true_flag=1;
-  rtlreg_t false_flag=0;
-  //set  CF  a-b   :b>a cf=1
-  if(id_dest->val<id_src->val) rtl_set_CF(&true_flag);
-  else  rtl_set_CF(&false_flag);
-  //set  OF  
-  rtlreg_t *dest_result=&id_dest->val;
-  rtlreg_t *src_result=&id_src->val;
-  rtlreg_t xor_result =dest_result[id_dest->width*8-1]^src_result[id_src->width*8-1];
-
-  rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
   
-  rtl_update_ZFSF(&id_dest->val,id_dest->width);
+  rtl_sub(&t2, &id_dest->val, &id_src->val);
+  operand_write(id_dest, &t2);
 
-  rtlreg_t xnor_result=!(dest_result[id_dest->width*8-1]^src_result[id_src->width*8-1]);
-  rtlreg_t result=xor_result&xnor_result;
-  rtl_set_OF(&result);
+  rtl_update_ZFSF(&t2, id_dest->width);
+
+  rtl_sltu(&t0, &id_dest->val, &t2);
+  rtl_set_CF(&t0);
+
+  rtl_xor(&t0, &id_dest->val, &id_src->val);
+  rtl_xor(&t1, &id_dest->val, &t2);
+  rtl_and(&t0, &t0, &t1);
+  rtl_msb(&t0, &t0, id_dest->width);
+  rtl_set_OF(&t0);
+  
+  rtl_get_ZF(&t0);
+  rtl_get_SF(&t1);
+  rtl_get_OF(&t2);
+  rtl_get_CF(&t3);
+  printf("ZF: %d SF:%d OF:%d CF:%d\n",t0,t1,t2,t3);
   print_asm_template2(sub);
 }
 
