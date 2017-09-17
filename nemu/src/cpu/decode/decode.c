@@ -50,9 +50,7 @@ static inline make_DopHelper(SI) {
   int8_t temp=result;
   op->simm=temp;
   }
-  printf("0x%08x       \n",op->simm);
   rtl_li(&op->val, op->simm);
- // printf("0x%08x\n",op->val);
 #ifdef DEBUG
   snprintf(op->str, OP_STR_SIZE, "$0x%x", op->simm);
 #endif
