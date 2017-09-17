@@ -29,6 +29,7 @@ make_EHelper(call) {
   //TODO();
  // rtl_push(&decoding.seq_eip);
  // decoding.jmp_eip=decoding.seq_eip+id_dest->val;
+  printf("!!!!!!!!!");
   rtl_push(&cpu.eip);
   printf("hahaha");
   decoding.jmp_eip=cpu.eip+id_dest->val;
