@@ -34,8 +34,7 @@ union{
   vaddr_t eip;
 
 } CPU_state;
-typedef struct{
- union{
+typedef  union{
   struct{
   int CF :1;
   int DEFAULT1:1;
@@ -49,7 +48,6 @@ typedef struct{
   int DEFAULT5:20;
   };
   uint32_t value;
- };
 } EFLAGS;
 extern EFLAGS eflags;
 extern CPU_state cpu;
