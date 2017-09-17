@@ -7,8 +7,24 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  TODO();
+  //TODO();
+  rtlreg_t true_flag=1;
+  rtlreg_t false_flag=0;
+  //set  CF  a-b   :b>a cf=1
+  if(id_dest->val<id_src->val) rtl_set_CF(&true_flag);
+  else  rtl_set_CF(&false_flag);
+  //set  OF  
+  rtlreg_t *dest_result=&id_dest->val;
+  rtlreg_t *src_result=&id_src->val;
+  rtlreg_t xor_result =dest_result[id_dest->width*8-1]^src_result[id_src->width*8-1];
 
+  rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
+  
+  rtl_update_ZFSF(&id_dest->val,id_dest->width);
+
+  rtlreg_t xnor_result=!(dest_result[id_dest->width*8-1]^src_result[id_src->width*8-1]);
+  rtlreg_t result=xor_result&xnor_result;
+  rtl_set_OF(&result);
   print_asm_template2(sub);
 }
 

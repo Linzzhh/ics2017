@@ -34,7 +34,24 @@ union{
   vaddr_t eip;
 
 } CPU_state;
-
+typedef struct{
+ union{
+  struct{
+  int CF :1;
+  int DEFAULT1:1;
+  int DEFAULT2:4;
+  int ZF :1;
+  int SF :1;
+  int DEFAULT3:1;
+  int IF :1;
+  int DEFAULT4:1;
+  int OF :1;
+  int DEFAULT5:20;
+  };
+  uint32_t value;
+ };
+} EFLAGS;
+extern EFLAGS eflags;
 extern CPU_state cpu;
 
 static inline int check_reg_index(int index) {
