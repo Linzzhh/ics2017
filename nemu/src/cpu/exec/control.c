@@ -23,7 +23,7 @@ make_EHelper(jmp_rm) {
   print_asm("jmp *%s", id_dest->str);
 }
 
-make_EHelper(call1) {
+make_EHelper(call) {
   // the target address is calculated at the decode stage
   printf("hahahaha");
   rtl_push(&decoding.seq_eip);
