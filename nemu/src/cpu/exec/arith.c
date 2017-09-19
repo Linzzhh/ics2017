@@ -93,7 +93,7 @@ make_EHelper(dec) {
   t0=1;
   rtl_sub(&t2, &id_dest->val, &t0);
   printf("0x%08x   0x%08x\n",id_dest->val,t2);
-  TODO();
+  //TODO();
   operand_write(id_dest, &t2);
 
   rtl_update_ZFSF(&t2, id_dest->width);
