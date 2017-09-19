@@ -47,9 +47,9 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   //TODO();
-
+  
   rtl_sub(&t2, &id_dest->val, &id_src->val);
-
+  
   rtl_update_ZFSF(&t2, id_dest->width);
 
   rtl_sltu(&t0, &id_dest->val, &t2);
@@ -65,9 +65,10 @@ make_EHelper(cmp) {
   rtl_get_SF(&t1);
   rtl_get_OF(&t2);
   rtl_get_CF(&t3);
+  printf("%d   %d ,%d",id_dest->val,id_src->val,t0);
+  TODO();
   print_asm_template2(cmp);
 }
-
 make_EHelper(inc) {
   //TODO();
   t0=1;
