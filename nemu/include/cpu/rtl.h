@@ -185,14 +185,12 @@ static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
   //TODO();
-  /*
+  
   if(*result) 
   cpu.eflags.ZF=0;
   else 
   cpu.eflags.ZF=1;
-  if(cpu.eflags.ZF<0) cpu.eflags.ZF=1;*/
   
-  cpu.eflags.ZF=1;
   printf("%d  %d\n",*result,cpu.eflags.ZF);
 }
 

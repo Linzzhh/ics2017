@@ -66,7 +66,7 @@ make_EHelper(cmp) {
   rtl_get_OF(&t2);
   rtl_get_CF(&t3);
   printf("%d   %d ,%d  %d\n",id_dest->val,id_src->val,t0,cpu.eflags.ZF);
-  TODO();
+  //TODO();
   print_asm_template2(cmp);
 }
 make_EHelper(inc) {
