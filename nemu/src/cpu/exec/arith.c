@@ -90,7 +90,7 @@ make_EHelper(inc) {
 }
 
 make_EHelper(dec) {
-  //TODO();
+  TODO();
   t0=1;
   rtl_sub(&t2, &id_dest->val, &t0);
   operand_write(id_dest, &t2);
