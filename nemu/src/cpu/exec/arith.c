@@ -28,7 +28,7 @@ make_EHelper(sub) {
   rtl_get_SF(&t1);
   rtl_get_OF(&t2);
   rtl_get_CF(&t3);
-  printf("ZF: %d SF:%d OF:%d CF:%d\n",t0,t1,t2,t3);
+ // printf("ZF: %d SF:%d OF:%d CF:%d\n",t0,t1,t2,t3);
   print_asm_template2(sub);
 }
 

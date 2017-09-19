@@ -4,6 +4,7 @@ make_EHelper(mov);
 make_EHelper(lea);
 
 
+make_EHelper(nop);
 make_EHelper(operand_size);
 
 make_EHelper(inv);
