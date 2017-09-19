@@ -65,8 +65,8 @@ make_EHelper(cmp) {
   rtl_get_SF(&t1);
   rtl_get_OF(&t2);
   rtl_get_CF(&t3);
-  printf("%d   %d ,%d\n",id_dest->val,id_src->val,t0);
-  TODO();
+ // printf("%d   %d ,%d\n",id_dest->val,id_src->val,t0);
+ // TODO();
   print_asm_template2(cmp);
 }
 make_EHelper(inc) {
