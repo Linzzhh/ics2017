@@ -33,16 +33,16 @@ union{
 };
   vaddr_t eip;
   struct{
-  int CF :1;
-  int DEFAULT1:1;
-  int DEFAULT2:4;
-  int ZF :1;
-  int SF :1;
-  int DEFAULT3:1;
-  int IF :1;
-  int DEFAULT4:1;
-  int OF :1;
-  int DEFAULT5:20;
+  uint8_t CF :1;
+  uint8_t DEFAULT1:1;
+  uint8_t DEFAULT2:4;
+  uint8_t ZF :1;
+  uint8_t SF :1;
+  uint8_t DEFAULT3:1;
+  uint8_t IF :1;
+  uint8_t DEFAULT4:1;
+  uint8_t OF :1;
+  uint32_t DEFAULT5:20;
   }eflags;
 } CPU_state;
 extern CPU_state cpu;
