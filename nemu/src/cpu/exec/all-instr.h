@@ -20,6 +20,7 @@ make_EHelper(ret);
 make_EHelper(sub);
 make_EHelper(sbb);
 make_EHelper(add);
+make_EHelper(cmp);
 make_EHelper(adc);
 
 
