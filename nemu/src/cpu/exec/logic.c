@@ -112,7 +112,7 @@ make_EHelper(shl) {
   if(t0==t1) rtl_set_OF(&t2);
   else {t2=1; rtl_set_OF(&t2);}
   }
-  else{  
+  else if(id_src->val!=0){  
   t0=id_src->val-1;
   rtl_shl(&t2,&id_dest->val,&t0);
   rtl_msb(&t0,&t2,id_dest->width);
