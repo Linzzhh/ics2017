@@ -139,8 +139,10 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
   //TODO();
   printf("%d    !!!!!!!!!\n",*src1);
-  if(src1[width*8-1])
+  if(src1[width*8-1]){
+	  printf("%d            %d~!~!~!~\n",*src1,src1[width*8-1]);
 	 *dest= ~(*src1)+1;
+  }
   else
 	 *dest=*src1;
 }
