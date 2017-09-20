@@ -138,15 +138,19 @@ static inline void rtl_not(rtlreg_t* dest) {
 static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
   //TODO();
-  int w= width*8-1;
-  printf("%d   %d !!!!!!!!!\n",src1[31],w);
-
-  if(src1[width*8-1]){
-	  printf("%d            %d~!~!~!~\n",*src1,src1[2]);
-	 *dest= ~(*src1)+1;
+  if(width==4) *dest=*src1;
+  else if(width==2) 
+  {
+  uint16_t result= *src1;
+  int16_t tmp=result;
+  *dest=tmp;
   }
-  else
-	 *dest=*src1;
+  else if(width==1) 
+  {
+  uint8_t result= *src1;
+  int8_t tmp=result;
+  *dest=tmp;
+  }
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
