@@ -131,18 +131,17 @@ make_EHelper(shr) {
 }
 
 make_EHelper(setcc) {
-  printf("decoding   0x%08x \n ",decoding.opcode);
   uint8_t subcode = decoding.opcode & 0xf;
   rtl_setcc(&t2, subcode);
   operand_write(id_dest, &t2);
 
-  print_asm("set%s %s", get_cc_name(subcode), id_dest->str);
 }
 
 make_EHelper(not) {
   //TODO();
-
+  printf("0x%08x   ",id_dest->val);
   rtl_not( &id_dest->val);
   operand_write(id_dest,&id_dest->val);
+  printf("0x%08x   !~!\n",id_dest->val);
   print_asm_template1(not);
 }
