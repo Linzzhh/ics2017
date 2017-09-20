@@ -99,6 +99,7 @@ make_EHelper(sar) {
 make_EHelper(shl) {
   //TODO();
   // unnecessary to update CF and OF in NEMU
+  printf("0x%08x       0x%08x \n",id_dest->val,id_src->val);
   if(id_src->val==1)
   {
   rtl_msb(&t0,&id_dest->val,id_dest->width);
@@ -120,6 +121,9 @@ make_EHelper(shl) {
   rtl_shl(&t2,&t2,&t0);
   operand_write(id_dest,&t2);
   }
+  rtl_get_CF(&t0);
+  rtl_get_OF(&t1);
+  printf("CF%d      OF %d\n",t0,t1);
   print_asm_template2(shl);
 }
 
@@ -139,9 +143,7 @@ make_EHelper(setcc) {
 
 make_EHelper(not) {
   //TODO();
-  printf("0x%08x   ",id_dest->val);
   rtl_not( &id_dest->val);
   operand_write(id_dest,&id_dest->val);
-  printf("0x%08x   !~!\n",id_dest->val);
   print_asm_template1(not);
 }
