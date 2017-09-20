@@ -19,7 +19,7 @@ make_EHelper(add) {
   rtl_set_OF(&t0);
  // printf("CF %d  OF %d ZF %d  SF  %d \n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
   print_asm_template2(add);
-  TODO();
+ // TODO();
 }
 
 make_EHelper(sub) {
