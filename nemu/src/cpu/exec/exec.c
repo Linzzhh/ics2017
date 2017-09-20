@@ -54,8 +54,6 @@ make_group(gp2,
 make_group(gp3,
     EMPTY, EMPTY, EX(not), EMPTY,
     EMPTY, EMPTY, EMPTY, EMPTY)
-	bool flag=true;
-	bool *s=&flag;
 
   /* 0xfe */
 make_group(gp4,
