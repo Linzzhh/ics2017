@@ -14,19 +14,19 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
   // dest <- ( cc is satisfied ? 1 : 0)
  // printf("subcode %d \n",subcode);  
   switch (subcode & 0xe) {
-	  case CC_O:  rtl_get_OF(&t0); *dest=t0; *dest=invert?~*dest:*dest; break;
-	  case CC_B:  rtl_get_CF(&t0); *dest=t0; *dest=invert?~*dest:*dest; break;
+	  case CC_O:  rtl_get_OF(&t0); *dest=t0;  break;
+	  case CC_B:  rtl_get_CF(&t0); *dest=t0; break;
 	  case CC_E:  rtl_get_ZF(&t0); 
-		      *dest=t0; *dest=invert?~*dest:*dest; break;
+		      *dest=t0;  break;
 	  case CC_BE: rtl_get_ZF(&t0); rtl_get_CF(&t1); *dest=t0|t1; 
-		      *dest=invert?~*dest:*dest; break;
+		       break;
 	  case CC_S:  rtl_get_SF(&t0); *dest=t0; 
-		      *dest=invert?~*dest:*dest; break;
+		      break;
           case CC_L:  rtl_get_SF(&t0); rtl_get_OF(&t1); *dest=(t0!=t1); 
-		      *dest=invert?~*dest:*dest; break;
+		       break;
 	  case CC_LE: rtl_get_SF(&t0); rtl_get_OF(&t1);rtl_get_ZF(&t2); 
 		      *dest=((!t2)&(t0!=t1)); 
-		      *dest=invert?~*dest:*dest; break;
+		       break;
    //   TODO();
     default: panic("should not reach here");
     case CC_P: panic("n86 does not have PF");
