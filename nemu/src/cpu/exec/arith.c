@@ -3,6 +3,7 @@
 make_EHelper(add) {
  // TODO();
   rtl_add(&t2, &id_dest->val, &id_src->val);
+  printf("%d + %d = %d \n",id_dest->val,id_src->val,t2);
   operand_write(id_dest, &t2);
 
   rtl_update_ZFSF(&t2, id_dest->width);
@@ -16,7 +17,9 @@ make_EHelper(add) {
   rtl_and(&t0, &t0, &t1);
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
+  printf("CF %d  OF %d ZF %d  SF  %d \n",cpu.eflags.CF,cpu.eflags.OF,cpu.eflags.ZF,cpu.eflags.SF);
   print_asm_template2(add);
+  TODO();
 }
 
 make_EHelper(sub) {
@@ -36,10 +39,6 @@ make_EHelper(sub) {
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
   
-  rtl_get_ZF(&t0);
-  rtl_get_SF(&t1);
-  rtl_get_OF(&t2);
-  rtl_get_CF(&t3);
  // printf("ZF: %d SF:%d OF:%d CF:%d\n",t0,t1,t2,t3);
   print_asm_template2(sub);
 }
