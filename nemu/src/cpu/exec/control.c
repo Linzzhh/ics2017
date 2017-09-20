@@ -3,7 +3,7 @@
 make_EHelper(jmp) {
   // the target address is calculated at the decode stage
   decoding.is_jmp = 1;
-
+  printf("jmp:0x%08x    \n",decoding.jmp_eip);
   print_asm("jmp %x", decoding.jmp_eip);
 }
 
@@ -13,6 +13,7 @@ make_EHelper(jcc) {
   rtl_setcc(&t2, subcode);
   decoding.is_jmp = t2;
 
+  printf("jcc:0x%08x    \n",decoding.jmp_eip);
   print_asm("j%s %x", get_cc_name(subcode), decoding.jmp_eip);
 }
 
