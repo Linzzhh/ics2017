@@ -9,6 +9,7 @@ make_EHelper(jmp) {
 
 make_EHelper(jcc) {
   // the target address is calculated at the decode stage
+  printf("decoding: 0x%08x   \n",decoding.opcode);
   uint8_t subcode = decoding.opcode & 0xf;
   rtl_setcc(&t2, subcode);
   printf("%d    !!",t2);
