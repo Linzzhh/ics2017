@@ -15,11 +15,10 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
   // dest <- ( cc is satisfied ? 1 : 0)
   
   switch (subcode & 0xe) {
-	  case CC_O:  rtl_get_OF(&t0); *dest=t0; break;
-	  case CC_B:  rtl_get_CF(&t0); *dest=t0; break;
-	  case CC_E:  rtl_get_ZF(&t0); *dest=t0; break;
-	  case CC_NE:  rtl_get_ZF(&t0); *dest=~t0;printf("%d      %d??\n",  *dest,t0); break;
-          case CC_BE: rtl_get_ZF(&t0); rtl_get_CF(&t1); *dest=t0|t1; break;
+	  case CC_O:  rtl_get_OF(&t0); *dest=t0; *dest=invert?~*dest:*dest; break;
+	  case CC_B:  rtl_get_CF(&t0); *dest=t0; *dest=invert?~*dest:*dest; break;
+	  case CC_E:  rtl_get_ZF(&t0); *dest=t0; *dest=invert?~*dest:*dest; break;
+          case CC_BE: rtl_get_ZF(&t0); rtl_get_CF(&t1); *dest=t0|t1;  break;
 	  case CC_S:  rtl_get_SF(&t0); *dest=t0; break;
           case CC_L:  rtl_get_SF(&t0); rtl_get_OF(&t1); *dest=(t0!=t1); break;
 	  case CC_LE: rtl_get_SF(&t0); rtl_get_OF(&t1);rtl_get_ZF(&t2); 
