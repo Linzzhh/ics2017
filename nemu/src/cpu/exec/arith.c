@@ -64,7 +64,7 @@ make_EHelper(cmp) {
   rtl_get_SF(&t1);
   rtl_get_CF(&t2);
   rtl_get_OF(&t3);
-  printf("%d - %d  ZF %d  SF %d  CF %d OF %d ",id_dest->val,id_src->val,t0,t1,t2,t3);
+  printf("%d - %d  ZF %d  SF %d  CF %d OF %d \n",id_dest->val,id_src->val,t0,t1,t2,t3);
   //TODO();
   print_asm_template2(cmp);
 }
