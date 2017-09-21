@@ -115,7 +115,6 @@ make_EHelper(shl) {
   }
   rtl_get_CF(&t0);
   rtl_get_OF(&t1);
-  printf("CF%d      OF %d\n",t0,t1);
   print_asm_template2(shl);
 }
 
