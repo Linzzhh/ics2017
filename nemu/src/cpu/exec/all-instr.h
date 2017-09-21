@@ -28,6 +28,8 @@ make_EHelper(adc);
 make_EHelper(imul);
 make_EHelper(imul2);
 make_EHelper(cwtl);
+make_EHelper(idiv);
+make_EHelper(div);
 
 
 make_EHelper(and);
