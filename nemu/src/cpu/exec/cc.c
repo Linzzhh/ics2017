@@ -25,7 +25,8 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
           case CC_L:  rtl_get_SF(&t0); rtl_get_OF(&t1); *dest=(t0!=t1); 
 		       break;
 	  case CC_LE: rtl_get_SF(&t0); rtl_get_OF(&t1);rtl_get_ZF(&t2); 
-		      *dest=((t2)||(t0!=t1));
+		     // *dest=((t2)||(t0!=t1));
+		      *dest= (t2==0x1||t0!=t1)?1:0;
 		      printf("%d SF%d OF %d ZF %d  DEST %d\n",invert,t0,t1,t2,*dest);
 		       break;
    //   TODO();
