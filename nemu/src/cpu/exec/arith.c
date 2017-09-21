@@ -80,8 +80,8 @@ make_EHelper(inc) {
   rtl_set_CF(&t0);
 
   t3=1;
-  //rtl_xor(&t0, &id_dest->val, &t3);
-  rtl_xor(&t0, &id_dest->val, &id_src->val);
+  rtl_xor(&t0, &id_dest->val, &t3);
+  //rtl_xor(&t0, &id_dest->val, &id_src->val);
   rtl_not(&t0);
   rtl_xor(&t1, &id_dest->val, &t2);
   rtl_and(&t0, &t0, &t1);
@@ -103,8 +103,8 @@ make_EHelper(dec) {
   rtl_set_CF(&t0);
   
   t3=1;
-  //rtl_xor(&t0, &id_dest->val, &t3);
-  rtl_xor(&t0, &id_dest->val, &id_src->val);
+  rtl_xor(&t0, &id_dest->val, &t3);
+  //rtl_xor(&t0, &id_dest->val, &id_src->val);
   rtl_xor(&t1, &id_dest->val, &t2);
   rtl_and(&t0, &t0, &t1);
   rtl_msb(&t0, &t0, id_dest->width);
