@@ -64,7 +64,7 @@ make_EHelper(cmp) {
   rtl_get_SF(&t1);
   rtl_get_CF(&t2);
   rtl_get_OF(&t3);
-  printf("%d - %d  ZF %d  SF %d  CF %d OF %d \n",id_dest->val,id_src->val,t0,t1,t2,t3);
+ // printf("%d - %d  ZF %d  SF %d  CF %d OF %d \n",id_dest->val,id_src->val,t0,t1,t2,t3);
   //TODO();
   print_asm_template2(cmp);
 }
@@ -93,7 +93,7 @@ make_EHelper(inc) {
 make_EHelper(dec) {
   t0=1;
   rtl_sub(&t2, &id_dest->val, &t0);
-  printf("0x%08x   0x%08x\n",id_dest->val,t2);
+ // printf("0x%08x   0x%08x\n",id_dest->val,t2);
   //TODO();
   operand_write(id_dest, &t2);
 
@@ -213,7 +213,7 @@ make_EHelper(imul2) {
   rtl_sext(&id_dest->val, &id_dest->val, id_dest->width);
 
   rtl_imul(&t0, &t1, &id_dest->val, &id_src->val);
-  printf("%d * %d = %d \n",id_dest->val,id_src->val,t1);
+  //printf("%d * %d = %d \n",id_dest->val,id_src->val,t1);
   operand_write(id_dest, &t1);
    
   print_asm_template2(imul);
