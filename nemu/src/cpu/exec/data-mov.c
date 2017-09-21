@@ -47,7 +47,7 @@ make_EHelper(cltd) {
   }
   else {
     //TODO();
-    reg_w(R_EDX) = (reg_w(R_EAX&0x80000000)==0x80000000)?0xffffffff:0;
+    reg_l(R_EDX) = (reg_l(R_EAX&0x80000000)==0x80000000)?0xffffffff:0;
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
