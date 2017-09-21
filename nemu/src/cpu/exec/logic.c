@@ -19,10 +19,8 @@ make_EHelper(and) {
   operand_write(id_dest,&t2);
   rtl_update_ZFSF(&t2,id_dest->width); 
  
- // t0=0; 
-  rtl_xor(&t0,&t0,&t0);
-  rtl_set_OF(&t0);
-  rtl_set_CF(&t0);
+  rtl_set_OF(&tzero);
+  rtl_set_CF(&tzero);
   print_asm_template2(and);
 }
 
