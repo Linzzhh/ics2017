@@ -56,10 +56,16 @@ make_EHelper(cltd) {
 
 make_EHelper(cwtl) {
   if (decoding.is_operand_size_16) {
-   TODO();
+   //TODO();
+    uint8_t utmp =reg_b(R_AL);
+    int8_t tmp=utmp;
+    reg_w(R_AX) =tmp;
   }
   else {
-    TODO();
+    //TODO();
+    uint16_t utmp =reg_b(R_AX);
+    int16_t tmp=utmp;
+    reg_l(R_EAX) =tmp;
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
