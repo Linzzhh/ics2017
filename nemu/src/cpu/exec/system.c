@@ -58,7 +58,7 @@ make_EHelper(in) {
 
 make_EHelper(out) {
   //TODO();
-  printf("out:  0x%08x        %c\n",id_dest->val,id_src->val);
+  printf("out:  0x%08x        %s\n",id_dest->val,id_src->str);
   pio_write(id_dest->val,1,id_src->val);
   print_asm_template2(out);
 
