@@ -47,7 +47,6 @@ void pio_write(ioaddr_t, int, uint32_t);
 make_EHelper(in) {
   //TODO();
 
-  printf("in:  0x%08x        %d\n",id_dest->val,id_src->val);
   t0=pio_read(id_src->val,1);
   operand_write(id_dest,&t0);
   print_asm_template2(in);
@@ -59,7 +58,6 @@ make_EHelper(in) {
 
 make_EHelper(out) {
   //TODO();
-  printf("out:  0x%08x        %s\n",id_dest->val,id_src->str);
   pio_write(id_dest->val,1,id_src->val);
   print_asm_template2(out);
 
