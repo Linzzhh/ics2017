@@ -149,8 +149,18 @@ void difftest_step(uint32_t eip) {
 
   // TODO: Check the registers state with QEMU.
   // Set `diff` as `true` if they are not the same.
-  TODO();
-
+ // TODO();
+   int index;
+    for(index = 0; index < 8; index++){
+      if(r.array[index] != reg_l(index)) {
+	diff = true;
+	printf("At $eip : 0x%08x, REG $%s in qemu is 0x%08x in nemu is 0x%08x\n", cpu.eip, reg_name(index, 4), r.array[index], reg_l(index));
+      }
+     }
+    if(r.eip != cpu.eip) {
+      diff = true;
+      printf("At $eip : 0x%08x, REG $eip in qemu is 0x%08x, in nemu is 0x%08x\n", cpu.eip, r.eip, cpu.eip);
+     }
   if (diff) {
     nemu_state = NEMU_END;
   }
