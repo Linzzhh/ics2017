@@ -63,7 +63,7 @@ make_EHelper(cwtl) {
   }
   else {
     //TODO();
-    uint16_t utmp =reg_b(R_AX);
+    uint16_t utmp =reg_w(R_AX);
     int16_t tmp=utmp;
     reg_l(R_EAX) =tmp;
   }
