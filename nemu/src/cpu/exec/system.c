@@ -48,7 +48,8 @@ make_EHelper(in) {
   //TODO();
 
   printf("in:  0x%08x        %d\n",id_dest->val,id_src->val);
-  pio_read(id_dest->val,1);
+  t0=pio_read(id_src->val,1);
+  operand_write(id_dest,&t0);
   print_asm_template2(in);
 
 #ifdef DIFF_TEST
