@@ -22,6 +22,7 @@ make_EHelper(jmp_rm);
 make_EHelper(leave);
 make_EHelper(ret);
 
+make_EHelper(neg);
 make_EHelper(sub);
 make_EHelper(sbb);
 make_EHelper(add);
