@@ -1,5 +1,4 @@
 #include "common.h"
-
 #ifdef HAS_IOE
 
 #include "device/mmio.h"
