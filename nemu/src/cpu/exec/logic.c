@@ -99,6 +99,8 @@ make_EHelper(sar) {
   print_asm_template2(sar);
 }
 
+make_EHelper(rol) {
+}
 make_EHelper(shl) {
   //TODO();
   // unnecessary to update CF and OF in NEMU
