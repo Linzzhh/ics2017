@@ -120,7 +120,7 @@ make_EHelper(rol) {
 make_EHelper(shl) {
   //TODO();
   // unnecessary to update CF and OF in NEMU
-  /*
+  
   if(id_src->val==1)
   {
   rtl_msb(&t0,&id_dest->val,id_dest->width);
@@ -143,10 +143,10 @@ make_EHelper(shl) {
   operand_write(id_dest,&t2);
   }
   rtl_get_CF(&t0);
-  rtl_get_OF(&t1);*/
+  rtl_get_OF(&t1);/*
 	rtl_shl(&t2, &id_dest->val, &id_src->val);
 	  operand_write(id_dest, &t2);
-	    rtl_update_ZFSF(&t2, id_dest->width);
+	    rtl_update_ZFSF(&t2, id_dest->width);*/
   print_asm_template2(shl);
 }
 
