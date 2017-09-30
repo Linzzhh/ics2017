@@ -78,7 +78,7 @@ make_EHelper(sar) {
     uint16_t utmp=id_dest->val;
     int16_t  tmp=utmp;
     id_dest->val = tmp;
-  }
+  }/*
   if(id_src->val==1){
   t0=1;
   rtl_and(&t1,&id_dest->val,&t0);
@@ -94,12 +94,12 @@ make_EHelper(sar) {
   operand_write(id_dest,&t2);
   rtl_set_CF(&t1);
   }
-  rtl_set_OF(&tzero);
-/*
+  rtl_set_OF(&tzero);*/
+
   rtl_sar(&t2, &id_dest->val, &id_src->val);
   operand_write(id_dest, &t2);
   rtl_update_ZFSF(&t2, id_dest->width);
-  */
+  
   print_asm_template2(sar);
 }
 
