@@ -10,9 +10,10 @@ make_EHelper(push) {
  //  TODO();
  // printf("0x%08x!!!!!!\n",id_dest->val);
   if(id_dest->width==1){
-    uint8_t utmp=id_dest->val;
-    int8_t tmp=utmp;
-    id_dest->val=tmp;
+   // uint8_t utmp=id_dest->val;
+   // int8_t tmp=utmp;
+   // id_dest->val=tmp;
+    id_dest->val = (int32_t) ((int8_t)id_dest->val);
   }
   rtl_push(&id_dest->val);
   print_asm_template1(push);
