@@ -10,10 +10,12 @@ make_EHelper(lidt) {
   //TODO();
   Log("cpu.eip: 0x%-8x", cpu.eip);
   Log("cpu.seq_eip: 0x%-8x", decoding.seq_eip);
-  cpu.idtr.limit = id_dest->val;   // get 16bit limit
-  
-  uint32_t base = vaddr_read(id_dest->addr+2,4);
-  if(id_dest->width==2){ //if 16bit, get 24bit of value
+
+  //48bit length value
+  cpu.idtr.limit = vaddr_read(id_dest->addr,2);   // get 16bit limit
+   
+  uint32_t base = vaddr_read(id_dest->addr+2,4); // get 32bit base
+  if(id_dest->width==2){ //if length = 16, get 24bit of value
     base = base & 0xffffff;
   }
   cpu.idtr.base = base;
@@ -38,6 +40,8 @@ make_EHelper(mov_cr2r) {
 
 make_EHelper(int) {
   //TODO();
+  //seq_eip is the address of next instruction, seq != eip+1
+  //eip is the current address 
   raise_intr(id_dest->val,decoding.seq_eip);
   print_asm("int %s", id_dest->str);
 
