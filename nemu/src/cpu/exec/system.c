@@ -8,6 +8,8 @@ make_EHelper(lidt) {
   //printf("0x%08x   ",id_dest->val);
   
   //TODO();
+  Log("cpu.eip: 0x%-8x", cpu.eip);
+  Log("cpu.seq_eip: 0x%-8x", decoding.seq_eip);
   cpu.idtr.limit = id_dest->val;   // get 16bit limit
   
   uint32_t base = vaddr_read(id_dest->addr+2,4);
