@@ -14,7 +14,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //TODO();
   uint32_t low_idtr = vaddr_read(cpu.idtr.base+NO,4);
   uint32_t high_idtr = vaddr_read(cpu.idtr.base+NO+4,4);
-  uint32_t iaddr=(uint32_t)(low_idtr&0xffff)+(uint32_t)(high_idtr>>16);
+  uint32_t iaddr=(uint32_t)(low_idtr&0xffff)+(uint32_t)(high_idtr&0xffff0000);
   cpu.eip=iaddr;
 }
 
