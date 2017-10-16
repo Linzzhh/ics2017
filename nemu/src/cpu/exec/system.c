@@ -12,7 +12,7 @@ make_EHelper(lidt) {
   
   uint32_t base = vaddr_read(id_dest->addr+2,4);
   if(id_dest->width==2){ //if 16bit, get 24bit of value
-    t0 = base & 0xffffff;
+    base = base & 0xffffff;
   }
   cpu.idtr.base = base;
   print_asm_template1(lidt);
