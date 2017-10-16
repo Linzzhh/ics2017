@@ -2,10 +2,19 @@
 
 void diff_test_skip_qemu();
 void diff_test_skip_nemu();
-
+extern void raise_intr(uint8_t NO,vaddr_t ret_addr);
 make_EHelper(lidt) {
-  TODO();
-
+  //printf("in lidt: ");
+  //printf("0x%08x   ",id_dest->val);
+  
+  //TODO();
+  cpu.idtr.limit = id_dest->val;   // get 16bit limit
+  
+  uint32_t base = vaddr_read(id_dest->addr+2,4);
+  if(id_dest->width==2){ //if 16bit, get 24bit of value
+    t0 = base & 0xffffff;
+  }
+  cpu.idtr.base = base;
   print_asm_template1(lidt);
 }
 
@@ -26,8 +35,8 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  TODO();
-
+  //TODO();
+  raise_intr(id_dest->val,cpu.eip+1);
   print_asm("int %s", id_dest->str);
 
 #ifdef DIFF_TEST

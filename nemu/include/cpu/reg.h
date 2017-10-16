@@ -32,6 +32,12 @@ union{
   };
 };
   vaddr_t eip;
+  vaddr_t cs;
+  struct {
+  vaddr_t limit;
+  vaddr_t base;
+  }idtr;
+  union{
   struct{
   uint8_t CF :1;
   uint8_t DEFAULT1:1;
@@ -43,6 +49,8 @@ union{
   uint8_t DEFAULT4:1;
   uint8_t OF :1;
   uint32_t DEFAULT5:20;
+  };
+  uint32_t value;
   }eflags;
 } CPU_state;
 extern CPU_state cpu;
