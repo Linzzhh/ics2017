@@ -9,7 +9,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_push(&cpu.eflags.value);
   rtl_push(&cpu.cs);
   //rtlreg_t* next_eip=cpu.eip;
-  rtl_push(&cpu.eip);
+  rtl_push(&ret_addr);
   //printf("in int :   0x%08x,~\n",cpu.idtr.base);
   //TODO();
   uint32_t low_idtr = vaddr_read(cpu.idtr.base+NO*8,4);
