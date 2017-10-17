@@ -32,7 +32,7 @@ union{
   };
 };
   vaddr_t eip;
-  vaddr_t cs;
+  uint16_t cs;
   struct {
   vaddr_t limit;
   vaddr_t base;

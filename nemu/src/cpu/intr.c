@@ -8,7 +8,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //TODO();
   //push a point not a value
   rtl_push(&cpu.eflags.value);
-  rtl_push(&cpu.cs);
+  rtl_push((rtlreg_t *)&cpu.cs);
   
   rtl_push(&ret_addr);
   //printf("in int :   0x%08x,~\n",cpu.idtr.base);
