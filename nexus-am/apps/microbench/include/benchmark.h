@@ -62,7 +62,9 @@ extern "C" {
   def( lzip,  "lzip",  LZIP_SM,  LZIP_LG, "Lzip compression") \
   def(ssort, "ssort", SSORT_SM, SSORT_LG, "Suffix sort") \
   def(  md5,   "md5",   MD5_SM,   MD5_LG, "MD5 digest") \
-
+/*
+#define BENCHMARK_LIST(def) \
+  def(sieve, "sieve", SIEVE_SM, SIEVE_LG, "Eratosthenes sieve") \*/
 // Each benchmark will run REPEAT times
 
 #define DECL(_name, _sname, _s1, _s2, _desc) \
