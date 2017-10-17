@@ -53,13 +53,15 @@ make_EHelper(int) {
 make_EHelper(iret) {
   //TODO();
 
-  rtl_pop(&decoding.seq_eip);
-  //printf("eip:   0x%08x  \n ",cpu.eip);
+  rtl_pop(&cpu.eip);
+  printf("eip:   0x%08x  \n ",cpu.eip);
   rtl_pop(&t0);
 
   cpu.cs = (uint16_t)t0;
   rtl_pop(&cpu.eflags.value);
+  Log("hahahaha");
   print_asm("iret");
+  Log("hahahaha111111");
 }
 
 uint32_t pio_read(ioaddr_t, int);
