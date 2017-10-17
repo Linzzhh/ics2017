@@ -52,7 +52,9 @@ make_EHelper(int) {
 
 make_EHelper(iret) {
   //TODO();
+
   rtl_pop(&cpu.eip);
+  printf("eip:   0x%08x  \n ",cpu.eip);
   rtl_pop(&t0);
   cpu.cs = (uint16_t)t0;
   rtl_pop(&cpu.eflags.value);
