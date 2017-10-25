@@ -17,7 +17,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   uint32_t low_idtr = vaddr_read(cpu.idtr.base+NO*8,4);
   uint32_t high_idtr = vaddr_read(cpu.idtr.base+NO*8+4,4);
   uint32_t iaddr=(low_idtr&0xffff)+(high_idtr&0xffff0000);
-  Log("offset: 0x%-8x", iaddr);
+  //Log("offset: 0x%-8x", iaddr);
   // jmp -> so need change jmp_eip  not EIP!!, and set is_jmp=1
   decoding.jmp_eip=iaddr;
   decoding.is_jmp = 1;
