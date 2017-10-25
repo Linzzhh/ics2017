@@ -8,7 +8,7 @@
 
 // TODO: discuss with syscall interface
 extern char end;
-uint32_t program_break;
+uint32_t program_break = &end;
 
 #ifndef __ISA_NATIVE__
 
@@ -27,7 +27,14 @@ void _exit(int status) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  _exit(SYS_open);
+ // _exit(SYS_open);
+  //_syscall_(SYS_open, status, 0, 0);
+  /*for(int i = 6 ; i < NR_FILES; i++){
+    if(!strcmp(file_table[i].name,path)){
+      return i;
+    } 
+  }*/
+  return _syscall_(SYS_open, (uintptr_t)path, flags, mode);
 }
 
 int _write(int fd, void *buf, size_t count){
@@ -37,30 +44,35 @@ int _write(int fd, void *buf, size_t count){
 }
 
 void *_sbrk(intptr_t increment){
-  //printf("%d\n",increment);
+ // Log("%d\n",increment);
   if(increment == 0){
-    program_break = &end;
+    //program_break = &end;
+ // Log("%d\n",increment);
     return (void *)program_break;
   }else{
-    uint32_t* old_program_break; 
+    uint32_t old_program_break; 
     old_program_break = program_break ;
     program_break = program_break +increment ;
-    int result = _syscall_(SYS_brk, increment, 0, 0);
+    int result = _syscall_(SYS_brk, program_break, 0, 0);
     if(result !=0) return (void *)-1;
+ // Log("%d\n",increment);
     return (void *)old_program_break;
   }
 }
 
 int _read(int fd, void *buf, size_t count) {
-  _exit(SYS_read);
+  return _syscall_(SYS_read, fd, (uintptr_t)buf, count);
+  //_exit(SYS_read);
 }
 
 int _close(int fd) {
-  _exit(SYS_close);
+  return _syscall_(SYS_close, fd, 0, 0);
+  //_exit(SYS_close);
 }
 
 off_t _lseek(int fd, off_t offset, int whence) {
-  _exit(SYS_lseek);
+   return _syscall_(SYS_lseek, fd, offset, whence);
+  //_exit(SYS_lseek);
 }
 
 // The code below is not used by Nanos-lite.
