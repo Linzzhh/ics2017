@@ -14,13 +14,11 @@ _RegSet* do_syscall(_RegSet *r) {
   a[2] = SYSCALL_ARG3(r);
   a[3] = SYSCALL_ARG4(r);
   
-	  Log("sys: %d\n", a[0]);
   switch (a[0]) {
     case SYS_none: SYSCALL_ARG1(r)=1;break;
     case SYS_exit: _halt(a[1]);break;
-    case SYS_write: Log("hhhhhh\n");SYSCALL_ARG1(r) = fs_write(a[1], (void *)a[2], a[3]); break;
-    case SYS_read: SYSCALL_ARG1(r) = fs_read(a[1], (void *)a[2], a[3]); 
-	  Log("read done!: %d\n", a[0]); break;
+    case SYS_write: SYSCALL_ARG1(r) = fs_write(a[1], (void *)a[2], a[3]); break;
+    case SYS_read: SYSCALL_ARG1(r) = fs_read(a[1], (void *)a[2], a[3]); break;
     case SYS_close: SYSCALL_ARG1(r) = fs_close(a[1]); break;
     case SYS_open: SYSCALL_ARG1(r) = fs_open((char*)a[1], a[2], a[3]); break;
     case SYS_lseek: SYSCALL_ARG1(r) = fs_lseek(a[1], a[2], a[3]); break;

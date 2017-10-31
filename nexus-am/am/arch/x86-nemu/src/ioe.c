@@ -39,13 +39,13 @@ void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
 	//fb[i] = pixels[i-x*y];
     }
   //  else  fb[i] = i;*/
-  int i,j;
+ /* int i,j;
   for(i=0;i<h;i++ )
     for(j=0;j<w;j++){
      fb[(y+i)*_screen.width+j+x] = pixels[i*w+j];
-    }	
-  //for(int i=0;i<h;i++)
-  //	  memcpy(fb+(y+i)*400+x,pixels+i*w,w*4);
+    }	*/
+  for(int i=0;i<h;i++)
+  	  memcpy(fb+(y+i)*_screen.width+x,pixels+i*w,w*4);
 }
 
 void _draw_sync() {
