@@ -101,7 +101,8 @@ _RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *cons
     *ptr-- = 0x0; 
   //order refer from am/include/proc.h
   //push eflags
-  *ptr-- = 0x2; 
+  // *ptr-- = 0x2; 
+  *ptr-- = 0x202;//open IF 
   //push cs
   *ptr-- = 0x8; 
   //push eip

@@ -7,7 +7,6 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //cpu.idtr 
   //TODO();
   //push a point not a value
-  Log("!!!!!!!!!!!!!!  0x%08x",NO);
   rtl_push(&cpu.eflags.value);
   cpu.eflags.IF = 0; 
   rtl_push((rtlreg_t *)&cpu.cs);
