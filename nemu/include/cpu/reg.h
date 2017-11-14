@@ -39,19 +39,32 @@ union{
   }idtr;
   union{
   struct{
-  uint8_t CF :1;
-  uint8_t DEFAULT1:1;
-  uint8_t DEFAULT2:4;
-  uint8_t ZF :1;
-  uint8_t SF :1;
-  uint8_t DEFAULT3:1;
-  uint8_t IF :1;
-  uint8_t DEFAULT4:1;
-  uint8_t OF :1;
-  uint32_t DEFAULT5:20;
+    uint8_t CF :1;
+    uint8_t DEFAULT1:1;
+    uint8_t DEFAULT2:4;
+    uint8_t ZF :1;
+    uint8_t SF :1;
+    uint8_t DEFAULT3:1;
+    uint8_t IF :1;
+    uint8_t DEFAULT4:1;
+    uint8_t OF :1;
+    uint32_t DEFAULT5:20;
   };
   uint32_t value;
   }eflags;
+  union{
+    struct{
+      uint8_t PE :1;
+      uint8_t MP :1;
+      uint8_t EM :1;
+      uint8_t TS :1;
+      uint8_t ET :1;
+      uint32_t DEFAULT :26;
+      uint8_t PG :1;
+    };
+    vaddr_t cr0;
+  };
+  vaddr_t cr3;
 } CPU_state;
 extern CPU_state cpu;
 
