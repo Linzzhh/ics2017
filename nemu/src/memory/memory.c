@@ -27,7 +27,7 @@ void paddr_write(paddr_t addr, int len, uint32_t data) {
   memcpy(guest_to_host(addr), &data, len);
 }
 
-
+/*
 paddr_t page_translate(vaddr_t addr, bool is_write) {
   if (cpu.PG == 1) {
 	paddr_t page_dir_base = cpu.cr3;
@@ -56,6 +56,38 @@ paddr_t page_translate(vaddr_t addr, bool is_write) {
 	return page_base + (addr & 0x00000fff);
   } 
 	return addr;
+}
+*/
+
+paddr_t page_translate(vaddr_t addr, bool is_write) {
+  if (cpu.PG == 1) {
+	paddr_t pde_base = cpu.cr3;
+	paddr_t pde_addr = pde_base + ((addr >> 22) << 2);
+	uint32_t pde = paddr_read(pde_addr, 4);
+	if ((pde & 0x1) == 0) {
+	  Log("pde_base: 0x%-8x", pde_base);
+	  Log("pde: 0x%-8x", pde);
+	  Assert(0, "vaddr: 0x%-8x. The present bit of pde is wrong!!!", addr);
+	}
+	paddr_t pte_base = pde & 0xfffff000;
+	paddr_t pte_addr = pte_base + ((addr & 0x003ff000) >> 10);
+	uint32_t pte = paddr_read(pte_addr, 4);
+	if ((pte & 0x1) == 0) {
+	  Log("addr: 0x%-8x", addr);
+
+	  Log("pde: 0x%-8x", pde);
+	  Log("pte: 0x%-8x", pte);
+	  Assert(0, "The present bit of pte is wrong!!!");
+	}
+	paddr_t page_base = pte & 0xfffff000;
+	pte |= 0x20;
+	if (is_write)
+		pte |= 0x40;
+	paddr_write(pte_addr, 4, pte);
+	return page_base + (addr & 0x00000fff);
+  } else {
+	return addr;
+  }
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
