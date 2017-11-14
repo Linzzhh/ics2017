@@ -8,6 +8,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //TODO();
   //push a point not a value
   rtl_push(&cpu.eflags.value);
+  cpu.eflags.IF = 0; 
   rtl_push((rtlreg_t *)&cpu.cs);
   
   rtl_push(&ret_addr);
@@ -24,4 +25,5 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
 }
 
 void dev_raise_intr() {
+  cpu.INTR = true;
 }

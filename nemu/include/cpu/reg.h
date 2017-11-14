@@ -65,6 +65,7 @@ union{
     vaddr_t cr0;
   };
   vaddr_t cr3;
+  bool INTR;
 } CPU_state;
 extern CPU_state cpu;
 
