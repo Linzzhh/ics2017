@@ -73,8 +73,9 @@ void _map(_Protect *p, void *va, void *pa) {
   if ((updir[pde_index] & 0x1) == 0){//if page_tab_table is not present,create it
     uptab = (PTE *)(void *)(palloc_f());//create a page_tab_table
     updir[pde_index] = (uintptr_t)uptab | PTE_P;// add it into page_dir_table ,set present = 1
-  } else {//if present,get from dir_table
-      uptab = (PTE *)((uintptr_t)updir[pde_index] & 0xfffff000);//clear low 3bits
+  } 
+  else {//if present,get from dir_table
+    uptab = (PTE *)((uintptr_t)updir[pde_index] & 0xfffff000);//clear low 3bits
   }
   PTE pte = ((uintptr_t)pa & 0xfffff000) | PTE_P; //clear physical page low 3bits
   uptab[pte_index] = pte;//add pa into page_tab_table; 
@@ -83,6 +84,35 @@ void _map(_Protect *p, void *va, void *pa) {
 void _unmap(_Protect *p, void *va) {
 }
 
-_RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *const argv[], char *const envp[]) {
-  return NULL;
+_RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *const argv[], char *const envp[]){
+  // decompile start.c get asm code
+  // 08048000 <_start>:
+  // 8048000:   55                      push   %ebp
+  // 8048001:   89 e5                   mov    %esp,%ebp
+  // 8048003:   83 ec 0c                sub    $0xc,%esp 
+  // 8048006:   ff 75 10                pushl  0x10(%ebp)
+  // 8048009:   ff 75 0c                pushl  0xc(%ebp)
+  // 804800c:   ff 75 08                pushl  0x8(%ebp)   
+  // 804800f:   e8 60 00 00 00          call   8048074 <main> 
+
+  uint32_t *ptr = ustack.end;
+  
+  for (int i = 0; i < 8; i++) //push + push*3(sub -12) + pushl*3 +call(push addr) total 8 push
+    *ptr-- = 0x0; 
+  //order refer from am/include/proc.h
+  //push eflags
+  *ptr-- = 0x2; 
+  //push cs
+  *ptr-- = 0x8; 
+  //push eip
+  *ptr-- = (uint32_t)entry;
+  //push error code
+  *ptr-- = 0x0; 
+  //push irq id
+  *ptr-- = 0x81; 
+  //push 8 general registers
+  for (int i = 0; i < 8; i++)
+	*ptr-- = 0x0;
+  ptr++;
+  return (_RegSet *)ptr;
 }

@@ -37,5 +37,9 @@ int main() {
   //((void (*)(void))entry)();
   //load_prog("/bin/dummy");
   load_prog("/bin/pal");
+  load_prog("/bin/hello");
+  //nexus-am/am/arch/x86-nemu/src/asye.c
+  _trap();
+
   panic("Should not reach here");
 }

@@ -15,9 +15,9 @@ void load_prog(const char *filename) {
   uintptr_t entry = loader(&pcb[i].as, filename);
 
   // TODO: remove the following three lines after you have implemented _umake()
-  _switch(&pcb[i].as);
-  current = &pcb[i];
-  ((void (*)(void))entry)();
+  //_switch(&pcb[i].as);
+  //current = &pcb[i];
+  //((void (*)(void))entry)();
 
   _Area stack;
   stack.start = pcb[i].stack;
@@ -25,7 +25,22 @@ void load_prog(const char *filename) {
 
   pcb[i].tf = _umake(&pcb[i].as, stack, stack, (void *)entry, NULL, NULL);
 }
-
+int priority = 0;
 _RegSet* schedule(_RegSet *prev) {
-  return NULL;
+  // save the context pointer
+    current->tf = prev;
+  // always select pcb[0] as the new processi
+    priority++;
+  //always select pcb[0] as the new process
+    if(priority % 50 == 0)
+      current = &pcb[1];
+    else
+      current = &pcb[0];
+
+   //current = &pcb[0];
+  //current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
+  // TODO: switch to the new address space,
+  _switch(&current->as);
+  // then return the new context	
+  return current->tf;
 }

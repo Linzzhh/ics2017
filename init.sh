@@ -3,11 +3,11 @@
 log=""
 
 function init() {
-#  if [ -d $1 ]; then
-#    echo "$1 is already initialized, exiting..."
-#    return
-#  fi
-#
+   if [ -d $1 ]; then
+     echo "$1 is already initialized, exiting..."
+     return
+   fi
+
   while [ ! -d $1 ]; do
     git clone -b ics2017 https://github.com/NJU-ProjectN/$1.git
   done
