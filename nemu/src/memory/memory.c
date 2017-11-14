@@ -34,20 +34,20 @@ paddr_t page_translate(vaddr_t addr, bool is_write) {
 	paddr_t page_dir_off = (addr >> 22) << 2;
 	paddr_t pde_addr = page_dir_base + page_dir_off;
 	uint32_t pde = paddr_read(pde_addr, 4);//(pde)page_tab_base with 3bits U/S R/W P
-	if ((pde & 0x1) == 0) {//if page_tab not present
+/*	if ((pde & 0x1) == 0) {//if page_tab not present
 	  Log("pde_base: 0x%-8x", page_dir_base);
 	  Log("pde: 0x%-8x", pde);
 	  Assert(0, "vaddr: 0x%-8x. The present bit of pde is wrong!!!", addr);
-	}
+	}*/
 	paddr_t page_tab_base = pde & 0xfffff000;//clear low 3bits,then get the page_tab_base
 	paddr_t page_tab_off  = (addr & 0x003ff000) >> 10; //equal to >>12 <<2
 	paddr_t pte_addr = page_tab_base + page_tab_off; 
 	uint32_t pte = paddr_read(pte_addr, 4);//(pte)page_base with 3bits U/S R/W P
-	if ((pte & 0x1) == 0) {//if page not present
+/*	if ((pte & 0x1) == 0) {//if page not present
 	  Log("pde: 0x%-8x", pde);
 	  Log("pte: 0x%-8x", pte);
 	  Assert(0, "The present bit of pte is wrong!!!");
-	}
+	}*/
 	paddr_t page_base = pte & 0xfffff000;//clear low 3bits,then get the page_base
 	pte |= 0x40;
 	if (is_write)
