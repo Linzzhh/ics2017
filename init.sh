@@ -8,11 +8,11 @@ function init() {
 #    return
 #  fi
 #
-#  while [ ! -d $1 ]; do
-#    git clone -b ics2017 https://github.com/NJU-ProjectN/$1.git
-#  done
-#  log="$log$1 `cd $1 && git log --oneline --no-abbrev-commit -n1`"$'\n'
-#  rm -rf $1/.git
+  while [ ! -d $1 ]; do
+    git clone -b ics2017 https://github.com/NJU-ProjectN/$1.git
+  done
+  log="$log$1 `cd $1 && git log --oneline --no-abbrev-commit -n1`"$'\n'
+  rm -rf $1/.git
 
   if [ $2 ] ; then
     sed -i -e "/^export $2=.*/d" ~/.bashrc
